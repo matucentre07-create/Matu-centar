@@ -470,7 +470,6 @@ Guwahati-781014
 </p>
 <br>
 
-<!-- Clickable Phone and WhatsApp with Icons -->
 <p>
     <b><i class="fas fa-phone-alt" style="color: #0d47a1; margin-right: 5px;"></i> Phone Number:</b> 
     <a href="tel:+918638835058" style="text-decoration: none; color: #333; font-weight: bold;">8638835058</a>
@@ -487,18 +486,20 @@ Guwahati-781014
 </p>
 </div>
 
-  <!-- FormSubmit will automatically redirect to WhatsApp after sending the email -->
-<form action="https://formsubmit.co/matucentre07@email.com" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <input type="text" name="phone" placeholder="Phone Number" required>
-    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+  <!-- Added onsubmit to trigger the WhatsApp script right before the form sends the email -->
+<form action="https://formsubmit.co/matucentre07@email.com" method="POST" onsubmit="sendBoth()">
+    
+    <!-- Added id attributes so the JavaScript can find these fields -->
+    <input type="text" id="contact_name" name="name" placeholder="Your Name" required>
+    <input type="email" id="contact_email" name="email" placeholder="Your Email" required>
+    <input type="text" id="contact_phone" name="phone" placeholder="Phone Number" required>
+    <textarea id="contact_message" name="message" rows="5" placeholder="Your Message" required></textarea>
 
     <!-- Prevents captcha -->
     <input type="hidden" name="_captcha" value="false">
     
-    <!-- Redirects directly to WhatsApp after email submission -->
-    <input type="hidden" name="_next" value="https://wa.me/917099936966?text=Hello%20Matu%20Computer%20Centre,%20I%20have%20submitted%20a%20new%20enquiry.">
+    <!-- Changed to a standard web redirect (replace with your actual website URL or a 'Thank You' page) -->
+    <input type="hidden" name="_next" value="https://yourwebsite.com">
 
     <button type="submit" style="background:#0d47a1; color:white; padding:15px; width:100%; border:none; font-size:18px; border-radius:5px; cursor:pointer;">
         <i class="fas fa-paper-plane"></i> Send Message
@@ -506,14 +507,14 @@ Guwahati-781014
 </form>
 
 <script>
-function sendBoth(event) {
-    // 1. Extract values from input fields
+function sendBoth() {
+    // 1. Extract values from input fields using the IDs we just added
     var name = document.getElementById("contact_name").value;
     var email = document.getElementById("contact_email").value;
     var phone = document.getElementById("contact_phone").value;
     var msg = document.getElementById("contact_message").value;
 
-    // 2. Format WhatsApp Message
+    // 2. Format WhatsApp Message with the dynamic user data
     var whatsappNumber = "917099936966"; 
     var whatsappText = "Hello Matu Computer Centre, I have a new enquiry:%0A%0A" +
                        "*Name:* " + encodeURIComponent(name) + "%0A" +
@@ -523,11 +524,12 @@ function sendBoth(event) {
 
     var waLink = "https://wa.me/" + whatsappNumber + "?text=" + whatsappText;
 
-    // 3. Open WhatsApp in a new tab (prevents browser block)
+    // 3. Open WhatsApp in a new tab immediately
     window.open(waLink, '_blank');
+    
+    // The browser will then naturally continue the FormSubmit POST in the original tab.
 }
 </script>
-<!-- Dual Form Ends Here -->
 </div>
 </section>
 
