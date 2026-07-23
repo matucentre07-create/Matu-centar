@@ -259,6 +259,71 @@ nav{
 display:none;
 }
 }
+    .employee-search{
+width:100%;
+padding:15px;
+font-size:17px;
+margin-bottom:25px;
+border:2px solid #0d47a1;
+border-radius:8px;
+outline:none;
+}
+
+.employee-table{
+width:100%;
+border-collapse:collapse;
+background:#fff;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+overflow:hidden;
+border-radius:10px;
+}
+
+.employee-table th{
+background:#0d47a1;
+color:#fff;
+padding:15px;
+}
+
+.employee-table td{
+padding:15px;
+border-bottom:1px solid #ddd;
+text-align:center;
+}
+
+.employee-table tr:hover{
+background:#f2f7ff;
+}
+
+.download-area{
+margin-top:30px;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.download-area a{
+background:#0d47a1;
+color:#fff;
+padding:14px 25px;
+text-decoration:none;
+border-radius:6px;
+transition:.3s;
+}
+
+.download-area a:hover{
+background:#e53935;
+}
+
+@media(max-width:900px){
+
+.employee-table{
+display:block;
+overflow-x:auto;
+white-space:nowrap;
+}
+
+}
 </style>
 </head>
 <body>
@@ -278,6 +343,7 @@ display:none;
 <a href="#services">Services</a>
 <a href="#gallery">Gallery</a>
 <a href="#contact">Contact</a>
+    <a href="#employee">Employees</a>
 </nav>
 </header>
 
@@ -455,6 +521,82 @@ Address: Ahmed Market, Near Govt. Ayurvedic College, AEC Road, Jalukbari, Guwaha
 <img src="images/form.jpeg" alt="Form Gallery">
 </div>
 </section>
+    <section id="employee">
+
+<h2 class="title">Employee Directory</h2>
+
+<input
+type="text"
+id="employeeSearch"
+class="employee-search"
+placeholder="Search Employee..."
+onkeyup="searchEmployee()">
+
+<table class="employee-table" id="employeeTable">
+
+<thead>
+
+<tr>
+
+<th>Employee ID</th>
+<th>Name</th>
+<th>Designation</th>
+<th>Qualification</th>
+<th>Mobile</th>
+<th>Email</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>EMP001</td>
+<td>John Doe</td>
+<td>Computer Instructor</td>
+<td>BCA</td>
+<td>9876543210</td>
+<td>john@example.com</td>
+</tr>
+
+<tr>
+<td>EMP002</td>
+<td>Rita Sharma</td>
+<td>Office Assistant</td>
+<td>B.Com</td>
+<td>9123456789</td>
+<td>rita@example.com</td>
+</tr>
+
+<tr>
+<td>EMP003</td>
+<td>Rahul Das</td>
+<td>Hardware Trainer</td>
+<td>Diploma Hardware</td>
+<td>9876501234</td>
+<td>rahul@example.com</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<div class="download-area">
+
+<a href="pdf/employee-list.pdf" target="_blank">
+<i class="fas fa-file-pdf"></i>
+Employee List PDF
+</a>
+
+<a href="pdf/price-list.pdf" target="_blank">
+<i class="fas fa-file-pdf"></i>
+Price List PDF
+</a>
+
+</div>
+
+</section>
 
 <section id="contact">
 <h2 class="title">Contact Us</h2>
@@ -533,6 +675,45 @@ ${message}`;
     let url = "https://wa.me/917099936966?text=" + encodeURIComponent(text);
     window.open(url, "_blank");
 }
+</script>
+    <script>
+
+function searchEmployee(){
+
+let input=document.getElementById("employeeSearch");
+
+let filter=input.value.toUpperCase();
+
+let table=document.getElementById("employeeTable");
+
+let tr=table.getElementsByTagName("tr");
+
+for(let i=1;i<tr.length;i++){
+
+let td=tr[i].getElementsByTagName("td")[1];
+
+if(td){
+
+let txt=td.textContent||td.innerText;
+
+if(txt.toUpperCase().indexOf(filter)>-1){
+
+tr[i].style.display="";
+
+}
+
+else{
+
+tr[i].style.display="none";
+
+}
+
+}
+
+}
+
+}
+
 </script>
 
 </body>
