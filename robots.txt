@@ -2,4 +2,4 @@ User-agent: *
 
 Allow: /
 
-Sitemap: https://matucentre07-create.github.io/Matu-centar/sitemap.xml
+Sitemap: https://matucentre07-create.github.io/Matu-centre/sitemap.xml
